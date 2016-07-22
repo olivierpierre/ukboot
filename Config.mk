@@ -3,10 +3,10 @@
 
 # For each one of these number of currently running unikernels
 # we do a measurement
-CURRENTLY_RUNNING="0 2 4 8 16 32"
+CURRENTLY_RUNNING="0 2 4 8 16 32 48"
 
 # Xen source dir for unikernel compilation
-XEN_SRC_DIR="/root/popcorn-xen"
+XEN_SRC_DIR="/root/xen"
 
 # Path to the background unikernels binary, and the measured one
 RUNNING_UK="unikernels/background/mini-os.gz"
@@ -20,20 +20,20 @@ CHRONO="tools/chrono/chronoquiet"
 
 # Time to wait (s) between the boot of the background uks 
 # and the boot of the measured uk
-SAFETYSLEEP=0
+SAFETYSLEEP=5
 
 # VCPU pinning for background unikernels: round-robin from first to 
 # last. For example with first=1 and last=3, newly created background 
 # unikernel will be pinned to PCPU #1, then 2, then 3, 1, 2, 3, etc.
 # Use PINNING_BG="no" to disable pinning. Note that first and last are 
 # inclusive.
-PINNING_BG="yes"
+PINNING_BG="no"
 PINNING_BGRR_FIRST=2
 PINNING_BGRR_LAST=3
 
 # CPU on which to pin the measured unikernel. To not pin, set this to 
 # "no"
-PINNING_M=1
+PINNING_M="no"
 
 # Should we print the config before the results
 PRINT_CONFIG="yes"
