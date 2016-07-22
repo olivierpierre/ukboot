@@ -15,7 +15,7 @@ Xen must be installed from sources, and these sources must be available somewher
  
 3. Compile unikernels and tools using `make`.
    If you experiment issues such as:
-   - `No rule to make target `mini-os-x86_64-c', needed by `c-stubdom'`
+   - `No rule to make target 'mini-os-x86_64-c', needed by 'c-stubdom'`
    please run the following command in this folder: `<xen sources dir>/stubdom`
    ``` shell
    ./configure --enable-c-stubdom
