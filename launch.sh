@@ -16,6 +16,7 @@ print_config ()
   echo "# PRINT_CONFIG=$PRINT_CONFIG"
   echo "# CURRENTLY_RUNNING=$CURRENTLY_RUNNING"
   echo "# XEN_SRC_DIR=$XEN_SRC_DIR"
+  echo "# OUTPUT_FILE=$OUTPUT_FILE"
   echo "# RUNNING_UK=$RUNNING_UK"
   echo "# MEASURED_UK=$MEASURED_UK"
   echo "# UK_MEMORY=$UK_MEMORY"
@@ -61,7 +62,7 @@ for current in $CURRENTLY_RUNNING; do
 		fi
 
         # Boot it
-        xl create $config_file -q
+        xl create $config_file -q &>> bg_boot.log || true
     done
     sleep $SAFETYSLEEP 
 

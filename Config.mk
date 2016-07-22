@@ -3,10 +3,13 @@
 
 # For each one of these number of currently running unikernels
 # we do a measurement
-CURRENTLY_RUNNING="0 2 4 8 16 32 48"
+CURRENTLY_RUNNING="0 2 4 8 16 32 64 128 256 512"
 
 # Xen source dir for unikernel compilation
 XEN_SRC_DIR="/root/xen"
+
+# File where we put the results
+OUTPUT_FILE="./results"
 
 # Path to the background unikernels binary, and the measured one
 RUNNING_UK="unikernels/background/mini-os.gz"
