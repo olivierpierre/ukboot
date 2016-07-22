@@ -8,29 +8,39 @@ CURRENTLY_RUNNING="0 2 4 8 16 32"
 # Xen source dir for unikernel compilation
 XEN_SRC_DIR="/root/popcorn-xen"
 
-# Path to the unikernel binary that will be the currently 
-# running one
+# Path to the background unikernels binary, and the measured one
 RUNNING_UK="unikernels/background/mini-os.gz"
-
-# Path to the unikernel binary of the one which will have its
-# execution time measured
 MEASURED_UK="unikernels/measured/mini-os.gz"
-
-# Path to the chrono utility to measure execution time of xl
-CHRONO="tools/chrono/chronoquiet"
-
-# Folder to store temporary files
-TMPDIR="./.tmp"
 
 # Default memory given to each unikernel
 UK_MEMORY="32"
 
-# Default basename for background unikernels
-BG_BASENAME="mini-os"
+# Path to the chrono utility to measure execution time of xl
+CHRONO="tools/chrono/chronoquiet"
 
 # Time to wait (s) between the boot of the background uks 
 # and the boot of the measured uk
 SAFETYSLEEP=0
+
+# VCPU pinning for background unikernels: round-robin from first to 
+# last. For example with first=1 and last=3, newly created background 
+# unikernel will be pinned to PCPU #1, then 2, then 3, 1, 2, 3, etc.
+# Use PINNING_BG="no" to disable pinning. Note that first and last are 
+# inclusive.
+PINNING_BG="yes"
+PINNING_BGRR_FIRST=2
+PINNING_BGRR_LAST=3
+
+# CPU on which to pin the measured unikernel. To not pin, set this to 
+# "no"
+PINNING_M=1
+
+# Should we print the config before the results
+PRINT_CONFIG="yes"
+
+# Xenstore path where the measured unikernel write its boot time. Must 
+# be concordant with the measured unikernel source code
+XS_RESULT="/test/result"
 
 # Less important parameters below
 # ------------------------------
@@ -38,5 +48,12 @@ SAFETYSLEEP=0
 # Default basename for background unikernels
 BG_BASENAME="mini-os"
 
-# Name of the measured uk
+# Name of the measured uk, and the background ones
 MEASURED_NAME="measured"
+BG_BASENAME="mini-os"
+
+# Folder to store temporary files
+TMPDIR="./.tmp"
+
+# Should we clear the temporary files after one run ?
+TMPCLEAR="yes"
