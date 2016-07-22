@@ -11,6 +11,7 @@ source $1
 # A function to print the config
 print_config ()
 {
+  echo "# --------------"
   echo "# Configuration:"
   echo "# --------------"
   echo "# PRINT_CONFIG=$PRINT_CONFIG"
@@ -30,10 +31,12 @@ print_config ()
   echo "# TMPDIR=$TMPDIR"
   echo "# TMPCLEAR=$TMPCLEAR"
   echo "# XS_RESULT=$XS_RESULT"
+  echo "# --------------------"
 }
 
-# Clean tmp dir
+# Clean tmp dir and output file
 rm -rf $TMPDIR && mkdir -p $TMPDIR
+echo "" > $OUTPUT_FILE
 
 # Print the config if needed
 if [ "$PRINT_CONFIG" == "yes" ]; then
@@ -42,6 +45,8 @@ fi
 
 currently_running_num=0
 for current in $CURRENTLY_RUNNING; do
+    echo "Currently running pass: $current"
+
     let number_to_boot="$current - $currently_running_num" || true
     
     # Boot background uks
@@ -62,8 +67,10 @@ for current in $CURRENTLY_RUNNING; do
 		fi
 
         # Boot it
-        xl create $config_file -q &>> bg_boot.log || true
+        xl create $config_file -q
+	echo "  Booted BG $index / $last_iteration"
     done
+    echo "  Safety sleep for $SAFETYSLEEP" secs
     sleep $SAFETYSLEEP 
 
     let currently_running_num="$currently_running_num + $number_to_boot" || true
@@ -101,7 +108,7 @@ for current in $CURRENTLY_RUNNING; do
 
     # print results
     # TODO incorporate xenstore results here
-    echo "$currently_running_num;$xl_time;$phase2"
+    echo "$currently_running_num;$xl_time;$phase2" >> $OUTPUT_FILE
 
     # Should not be needed to destroy it
     
