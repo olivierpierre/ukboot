@@ -1,5 +1,5 @@
 # ukboot
-Unikernels boot time comprehensive measurements
+Unikernels boot time comprehensive measurements.
 
 ## Requirements
 Xen must be installed from sources, and these sources must be available somewhere on the file system.
