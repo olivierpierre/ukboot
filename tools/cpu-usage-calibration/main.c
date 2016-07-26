@@ -11,6 +11,7 @@ typedef uint16_t domid_t;
 
 int main(void) {
     char *val, *err;
+    struct timespec ts;
     int i;
 
     val = (char *)malloc(128 * sizeof(char));
@@ -25,10 +26,12 @@ int main(void) {
 		goto out_free;
 	}
 
-    i = atoi(val);
+    ts.tv_sec = 0;
+    ts.tv_nsec = atol(val);
 
     while(1) {
-        usleep(i);
+        i = rand()%0xFFFFFFFF;
+        nanosleep(&ts, NULL);
     }
 
 out_free:
