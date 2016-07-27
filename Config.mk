@@ -25,11 +25,15 @@ CHRONO="tools/chrono/chronoquiet"
 # and the boot of the measured uk
 SAFETYSLEEP=5
 
-# VCPU pinning for background unikernels: round-robin from first to 
-# last. For example with first=1 and last=3, newly created background 
-# unikernel will be pinned to PCPU #1, then 2, then 3, 1, 2, 3, etc.
-# Use PINNING_BG="no" to disable pinning. Note that first and last are 
-# inclusive.
+# VCPU pinning for background unikernels. Possibles values are: 
+# - no: no pinning at all
+# - sub: specify a range of CPUs to use with first and last. Do not pin
+#        on any specific CPU on that range but let xen decide
+# - rr: pin on specific CPUs in a round-robin way from first to 
+#       last. For example with first=1 and last=3, newly created background 
+#       unikernel will be pinned to PCPU #1, then 2, then 3, 1, 2, 3, etc.
+# 
+# Note that first and last are inclusive.
 PINNING_BG="no"
 PINNING_BGRR_FIRST=2
 PINNING_BGRR_LAST=3

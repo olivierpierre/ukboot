@@ -59,13 +59,19 @@ for current in $CURRENTLY_RUNNING; do
         echo "on_crash = 'destroy'" >> $config_file
         echo "name = \"$BG_BASENAME$index\"" >> $config_file
         echo "vcpus = 1" >> $config_file
-        # Do we need to pin ?
-		if [ "$PINNING_BG" == "yes" ]; then
-			let pinning_num="$PINNING_BGRR_LAST - $PINNING_BGRR_FIRST + 1" || true
-			let pin_index="$PINNING_BGRR_FIRST + ($index % $pinning_num)" || true
-			echo "cpu = $pin_index" >> $config_file
-		fi
+        
+	# RR pinning ?
+	if [ "$PINNING_BG" == "rr" ]; then
+		let pinning_num="$PINNING_BGRR_LAST - $PINNING_BGRR_FIRST + 1" || true
+		let pin_index="$PINNING_BGRR_FIRST + ($index % $pinning_num)" || true
+		echo "cpu = $pin_index" >> $config_file
+	fi
 
+	# Sub pinning ?
+	if [ "$PINNING_BG" == "sub" ]; then
+		echo "cpus = ${PINNING_BGRR_FIRST}-${PINNING_BGRR_LAST}"
+	fi
+	
         # Boot it
         xl create $config_file -q
 	echo "  Booted BG $index / $last_iteration"
