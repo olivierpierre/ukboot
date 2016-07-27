@@ -1,0 +1,11 @@
+# Kernel image file.
+kernel = "mini-os.gz"
+
+# Initial memory allocation (in megabytes) for the new domain.
+memory = 32
+
+# A name for your domain. All domains must have different names.
+name = "mini-os504"
+
+on_crash = 'destroy'
+
