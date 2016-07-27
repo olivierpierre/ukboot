@@ -8,3 +8,6 @@ on a given host.
 1. Compile with `make` (you might need to edit `../../Config.mk` to set xen sources directory)
 
 2. Run `test.sh`, wait for it to crash because of too much unikernels running. Results are un the file `results`
+
+3. To stop all the running unikernels, you can use:
+   `xl shutdown -a`
