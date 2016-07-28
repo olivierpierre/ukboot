@@ -2,3 +2,4 @@ tools/chrono/chrono
 tools/chrono/chronoquiet
 unikernels/background/mini-os.gz
 unikernels/measured/mini-os.gz
+result
