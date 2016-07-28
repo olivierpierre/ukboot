@@ -66,7 +66,7 @@ for current in $CURRENTLY_RUNNING; do
 	if [ "$PINNING_BG" == "rr" ]; then
 		let pinning_num="$PINNING_BGRR_LAST - $PINNING_BGRR_FIRST + 1" || true
 		let pin_index="$PINNING_BGRR_FIRST + ($index % $pinning_num)" || true
-		echo "cpu = $pin_index" >> $config_file
+		echo "cpus = $pin_index" >> $config_file
 	fi
 
 	# Sub pinning ?
