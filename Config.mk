@@ -3,16 +3,16 @@
 
 # For each one of these number of currently running unikernels
 # we do a measurement
-CURRENTLY_RUNNING="0 2 4 8 16 32 64 128 256 512"
+CURRENTLY_RUNNING="0 2 4 8 16 32 64 128 256 500"
 
 # Xen source dir for unikernel compilation
 XEN_SRC_DIR="/root/xen"
 
 # File where we put the results
-OUTPUT_FILE="./results"
+OUTPUT_FILE="./result"
 
 # Path to the background unikernels binary, and the measured one
-RUNNING_UK="unikernels/background/mini-os.gz"
+RUNNING_UK="unikernels/background-idle/mini-os.gz"
 MEASURED_UK="unikernels/measured/mini-os.gz"
 
 # Default memory given to each unikernel
@@ -35,8 +35,8 @@ SAFETYSLEEP=5
 # 
 # Note that first and last are inclusive.
 PINNING_BG="no"
-PINNING_BGRR_FIRST=2
-PINNING_BGRR_LAST=3
+PINNING_BGRR_FIRST=4
+PINNING_BGRR_LAST=63
 
 # CPU on which to pin the measured unikernel. To not pin, set this to 
 # "no"

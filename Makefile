@@ -1,9 +1,9 @@
 all: uk_bg uk_measured chrono
 
 @PHONY: uk_bg
-uk_bg: unikernels/background/mini-os.gz
-unikernels/background/mini-os.gz: unikernels/background/main.c
-	make -C unikernels/background/ 
+uk_bg: unikernels/background-idle/mini-os.gz
+unikernels/background-idle/mini-os.gz: unikernels/background-idle/main.c
+	make -C unikernels/background-idle/ 
 
 @PHONY: uk_measured
 uk_measured: unikernels/measured/mini-os.gz

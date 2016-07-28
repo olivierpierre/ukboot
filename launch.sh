@@ -11,9 +11,11 @@ source $1
 # A function to print the config
 print_config ()
 {
+  setup=`uname -a`
   echo "# --------------"
   echo "# Configuration:"
   echo "# --------------"
+  echo "# $setup"
   echo "# PRINT_CONFIG=$PRINT_CONFIG"
   echo "# CURRENTLY_RUNNING=$CURRENTLY_RUNNING"
   echo "# XEN_SRC_DIR=$XEN_SRC_DIR"
@@ -40,7 +42,7 @@ echo "" > $OUTPUT_FILE
 
 # Print the config if needed
 if [ "$PRINT_CONFIG" == "yes" ]; then
-	print_config
+	print_config >> $OUTPUT_FILE
 fi
 
 currently_running_num=0
@@ -69,7 +71,7 @@ for current in $CURRENTLY_RUNNING; do
 
 	# Sub pinning ?
 	if [ "$PINNING_BG" == "sub" ]; then
-		echo "cpus = ${PINNING_BGRR_FIRST}-${PINNING_BGRR_LAST}"
+		echo "cpus = \"${PINNING_BGRR_FIRST}-${PINNING_BGRR_LAST}\"" >> $config_file
 	fi
 	
         # Boot it
