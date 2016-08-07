@@ -10,7 +10,7 @@ XEN_SRC_DIR="/root/popcorn-xen"
 
 # Xenstore tracing file, set to "" to disable collecting results 
 # related to this
-XS_TRACEFILE="/var/log/xenstore"
+XS_TRACEFILE="/var/log/xs_log"
 
 # File where we put the results
 OUTPUT_FILE="./result"
