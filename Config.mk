@@ -3,10 +3,14 @@
 
 # For each one of these number of currently running unikernels
 # we do a measurement
-CURRENTLY_RUNNING="0 2 4 8 16 32 64 128 256 500"
+CURRENTLY_RUNNING="0 2 4 8 16 32"
 
 # Xen source dir for unikernel compilation
-XEN_SRC_DIR="/root/xen"
+XEN_SRC_DIR="/root/popcorn-xen"
+
+# Xenstore tracing file, set to "" to disable collecting results 
+# related to this
+XS_TRACEFILE="/var/log/xenstore"
 
 # File where we put the results
 OUTPUT_FILE="./result"

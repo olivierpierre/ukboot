@@ -22,6 +22,7 @@ print_config ()
   echo "# OUTPUT_FILE=$OUTPUT_FILE"
   echo "# RUNNING_UK=$RUNNING_UK"
   echo "# MEASURED_UK=$MEASURED_UK"
+  echo "# XS_TRACEFILE=$XS_TRACEFILE"
   echo "# UK_MEMORY=$UK_MEMORY"
   echo "# CHRONO=$CHRONO"
   echo "# SAFETYSLEEP=$SAFETYSLEEP"
@@ -100,8 +101,15 @@ for current in $CURRENTLY_RUNNING; do
     xenstore-chmod $XS_RESULT b$MEASURED_NAME
     
     # Boot it with measurements
+    if [ ! "$XS_TRACEFILE" == "" ]; then
+        rm -rf /var/log/xenstore
+    fi
     xl_time=`$CHRONO xl create $config_file`
-    
+    if [ ! "$XS_TRACEFILE" == "" ]; then
+        sync $XS_TRACEFILE
+        cp $XS_TRACEFILE ./xslog.$currently_running_num.txt
+    fi
+
     # Wait for results to be available
     phase2=`xenstore-read $XS_RESULT`
     retries=0
@@ -115,7 +123,6 @@ for current in $CURRENTLY_RUNNING; do
     done
 
     # print results
-    # TODO incorporate xenstore results here
     echo "$currently_running_num;$xl_time;$phase2" >> $OUTPUT_FILE
 
     # Should not be needed to destroy it
