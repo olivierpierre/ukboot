@@ -1,0 +1,33 @@
+
+# --------------
+# Configuration:
+# --------------
+# Linux sonic 3.5.0-23-generic #35~precise1-Ubuntu SMP Fri Jan 25 17:13:26 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
+# PRINT_CONFIG=yes
+# CURRENTLY_RUNNING=0 2 4 8 16 32 64 128 256 500
+# XEN_SRC_DIR=/root/xen
+# OUTPUT_FILE=./result
+# RUNNING_UK=unikernels/background-idle/mini-os.gz
+# MEASURED_UK=unikernels/measured/mini-os.gz
+# UK_MEMORY=32
+# CHRONO=tools/chrono/chronoquiet
+# SAFETYSLEEP=5
+# PINNING_M=no
+# PINNING_BG=no
+# PINNING_BGRR_FIRST=16
+# PINNING_BGRR_LAST=63
+# BG_BASENAME=mini-os
+# TMPDIR=./.tmp
+# TMPCLEAR=yes
+# XS_RESULT=/test/result
+# --------------------
+0;212351;6637998
+2;166934;6706883
+4;173140;6751552
+8;178607;6704284
+16;195559;6648502
+32;203801;6487659
+64;272407;6645047
+128;499383;6586414
+256;1251722;6487259
+500;3901116;6429006

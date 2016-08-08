@@ -102,11 +102,11 @@ for current in $CURRENTLY_RUNNING; do
     
     # Boot it with measurements
     if [ ! "$XS_TRACEFILE" == "" ]; then
-        rm -rf /var/log/xenstore
+        rm -rf $XS_TRACEFILE
     fi
     xl_time=`$CHRONO xl create $config_file`
     if [ ! "$XS_TRACEFILE" == "" ]; then
-        sync $XS_TRACEFILE
+        sync
         cp $XS_TRACEFILE ./xslog.$currently_running_num.txt
     fi
 

@@ -1,7 +1,9 @@
 all: uk_bg uk_measured chrono
 
 @PHONY: uk_bg
-uk_bg: unikernels/background-idle/mini-os.gz
+uk_bg: unikernels/background-idle/mini-os.gz unikernels/background-100pc/mini-os.gz
+unikernels/background-100pc/mini-os.gz: unikernels/background-100pc/main.c
+	make -C unikernels/background-100pc/
 unikernels/background-idle/mini-os.gz: unikernels/background-idle/main.c
 	make -C unikernels/background-idle/ 
 
@@ -18,5 +20,6 @@ tools/chrono/chrono: tools/chrono/chrono.c tools/chrono/chronoquiet.c
 @PHONY: clean
 clean:
 	make clean -C tools/chrono/
-	make clean -C unikernels/background/
+	make clean -C unikernels/background-idle/
+	make clean -C unikernels/background-100pc/
 	make clean -C unikernels/measured/
