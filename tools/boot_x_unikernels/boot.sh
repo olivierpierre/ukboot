@@ -24,3 +24,6 @@ for i in `seq 1 $NUM`; do
         xl create $config_file -q
 	echo "  Booted $i / $NUM"
 done
+
+# cleanup tmp folder
+rm -rf $TMPDIR
