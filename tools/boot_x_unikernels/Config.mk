@@ -1,5 +1,5 @@
 # Number of unikernels to boot
-NUM=16
+NUM=500
 
 # Path to the unikernel file
 KERNEL=../../unikernels/background-idle/mini-os.gz
