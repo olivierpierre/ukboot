@@ -63,24 +63,10 @@ for current in $CURRENTLY_RUNNING; do
         echo "name = \"$BG_BASENAME$index\"" >> $config_file
         echo "vcpus = 1" >> $config_file
         
-	# RR pinning ?
-	if [ "$PINNING_BG" == "rr" ]; then
-		let pinning_num="$PINNING_BGRR_LAST - $PINNING_BGRR_FIRST + 1" || true
-		let pin_index="$PINNING_BGRR_FIRST + ($index % $pinning_num)" || true
-		echo "cpus = $pin_index" >> $config_file
-	fi
-
-	# Sub pinning ?
-	if [ "$PINNING_BG" == "sub" ]; then
-		echo "cpus = \"${PINNING_BGRR_FIRST}-${PINNING_BGRR_LAST}\"" >> $config_file
-	fi
-	
         # Boot it
         xl create-client create $config_file
 	    echo "  Booted BG $index / $last_iteration"
     done
-    echo "  Safety sleep for $SAFETYSLEEP" secs
-    sleep $SAFETYSLEEP 
 
     let currently_running_num="$currently_running_num + $number_to_boot" || true
 
@@ -104,7 +90,7 @@ for current in $CURRENTLY_RUNNING; do
     if [ ! "$XS_TRACEFILE" == "" ]; then
         rm -rf $XS_TRACEFILE
     fi
-    xl_time=`$CHRONO xl create-client create $config_file`
+    xl_time=`$CHRONO xl create $config_file`
     if [ ! "$XS_TRACEFILE" == "" ]; then
         sync
         cp $XS_TRACEFILE ./xslog.$currently_running_num.txt
